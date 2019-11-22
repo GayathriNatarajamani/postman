@@ -1,0 +1,14 @@
+{
+  "name": "postmancode",
+  "version": "1.0.0",
+  "description": "",
+ 
+  "scripts": {
+    "test": "newman run QA.postman_collection.json"
+  },
+  "author": "",
+ 
+  "dependencies": {
+    "newman": "^4.5.6"
+  }
+}

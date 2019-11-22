@@ -1,0 +1,492 @@
+{
+	"info": {
+		"_postman_id": "03d9ced7-1bc6-4146-b849-c8e4d015804c",
+		"name": "QA",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create partial view ",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "Password@09",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "t1_user@cebglobal.com",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "text/html, */*; q=0.01"
+					},
+					{
+						"key": "Origin",
+						"value": "https://qa-pulse.gartner.com"
+					},
+					{
+						"key": "X-Requested-With",
+						"value": "XMLHttpRequest"
+					},
+					{
+						"key": "__RequestVerificationToken",
+						"value": "JU7LiHJZqkJh5YXCUfSST6EXwXkVgJEm-m_ooijZ5OlyNxVokB2Gq4xuS_ybKmz032kPpFRvMOjgsECKRGnGHNhogQ5l7RWVPRKZ8QLX8IoFeoLc5-j-F9lRdjqu4dYzqoaFgQ2"
+					},
+					{
+						"key": "User-Agent",
+						"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36"
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "app",
+							"value": "Pulse"
+						},
+						{
+							"key": "gferequestkey",
+							"value": "{{S3Token}}"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://qa-pulse.gartner.com/SurveyEditor/Form/CreatePartialView",
+					"protocol": "https",
+					"host": [
+						"qa-pulse",
+						"gartner",
+						"com"
+					],
+					"path": [
+						"SurveyEditor",
+						"Form",
+						"CreatePartialView"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST _ LOGIN ",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "f736042f-1a57-42f5-8c36-3d25e2545271",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Origin",
+						"value": "https://qa-pulse.gartner.com"
+					},
+					{
+						"key": "Upgrade-Insecure-Requests",
+						"value": "1"
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					},
+					{
+						"key": "User-Agent",
+						"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36"
+					},
+					{
+						"key": "Sec-Fetch-User",
+						"value": "?1"
+					},
+					{
+						"key": "Accept",
+						"value": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "RedirectUrl",
+							"value": "https://qa-pulse.gartner.com/Pulse/Home/Index"
+						},
+						{
+							"key": "RememberMe",
+							"value": "False"
+						},
+						{
+							"key": "flagfield",
+							"value": ""
+						},
+						{
+							"key": "j_password",
+							"value": "Password@09"
+						},
+						{
+							"key": "j_username",
+							"value": "t1_user@cebglobal.com"
+						},
+						{
+							"key": "preventAutoPass",
+							"value": ""
+						}
+					]
+				},
+				"url": {
+					"raw": "https://qa-pulse.gartner.com/Pulse/S3/Login/LoginSubmit",
+					"protocol": "https",
+					"host": [
+						"qa-pulse",
+						"gartner",
+						"com"
+					],
+					"path": [
+						"Pulse",
+						"S3",
+						"Login",
+						"LoginSubmit"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST_Account Selection ",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "e40fea1a-0f70-4358-878b-46e1bcd4220e",
+						"exec": [
+							"var a = pm.cookies.get(\"S3Token\");\r",
+							"console.log(a);\r",
+							"pm.globals.set(\"S3Token\",a);\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							" \r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Origin",
+						"value": "https://qa-pulse.gartner.com"
+					},
+					{
+						"key": "Upgrade-Insecure-Requests",
+						"value": "1"
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					},
+					{
+						"key": "User-Agent",
+						"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36"
+					},
+					{
+						"key": "Sec-Fetch-User",
+						"value": "?1"
+					},
+					{
+						"key": "Accept",
+						"value": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "RedirectUrl",
+							"value": "https://qa-pulse.gartner.com/Pulse/Home/Index"
+						},
+						{
+							"key": "SelectedUserAccountCode",
+							"value": "DE518F65-AE0C-4920-8C66-1D625CDBE5FB"
+						},
+						{
+							"key": "token",
+							"value": "4A424D20-A900-407B-94A2-3892EDFE185A"
+						},
+						{
+							"key": "SelectedUserAccountCode",
+							"value": "",
+							"disabled": true
+						},
+						{
+							"key": "token",
+							"value": "",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "https://qa-pulse.gartner.com/Pulse/S3/Login/UserAccountSubmit",
+					"protocol": "https",
+					"host": [
+						"qa-pulse",
+						"gartner",
+						"com"
+					],
+					"path": [
+						"Pulse",
+						"S3",
+						"Login",
+						"UserAccountSubmit"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GETClient",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b6fab219-7197-4226-b5c9-7062228c9bfe",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Origin",
+						"value": "https://qa-pulse.gartner.com"
+					},
+					{
+						"key": "User-Agent",
+						"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Accept",
+						"value": "*/*"
+					}
+				],
+				"url": {
+					"raw": "https://qa-pulse.gartner.com/Pulse/Home/GetClientSurveys",
+					"protocol": "https",
+					"host": [
+						"qa-pulse",
+						"gartner",
+						"com"
+					],
+					"path": [
+						"Pulse",
+						"Home",
+						"GetClientSurveys"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GETMinimumFormSetting",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "7cbca5d9-f577-4880-90cf-9e8bd1687b58",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json, text/javascript, */*; q=0.01"
+					},
+					{
+						"key": "Origin",
+						"value": "https://qa-pulse.gartner.com"
+					},
+					{
+						"key": "X-Requested-With",
+						"value": "XMLHttpRequest"
+					},
+					{
+						"key": "__RequestVerificationToken",
+						"value": "JU7LiHJZqkJh5YXCUfSST6EXwXkVgJEm-m_ooijZ5OlyNxVokB2Gq4xuS_ybKmz032kPpFRvMOjgsECKRGnGHNhogQ5l7RWVPRKZ8QLX8IoFeoLc5-j-F9lRdjqu4dYzqoaFgQ2"
+					},
+					{
+						"key": "User-Agent",
+						"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json; charset=UTF-8"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{}"
+				},
+				"url": {
+					"raw": "https://qa-pulse.gartner.com/SurveyEditor/Form/GetFormMinimumSettings_V2",
+					"protocol": "https",
+					"host": [
+						"qa-pulse",
+						"gartner",
+						"com"
+					],
+					"path": [
+						"SurveyEditor",
+						"Form",
+						"GetFormMinimumSettings_V2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ValidateForm",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "8f1156b1-4021-4c8d-b81e-d15df36641ba",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Origin",
+						"value": "https://qa-pulse.gartner.com"
+					},
+					{
+						"key": "User-Agent",
+						"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36"
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json"
+					},
+					{
+						"key": "X-Requested-With",
+						"value": "XMLHttpRequest"
+					},
+					{
+						"key": "contentType",
+						"value": "application/json; charset=utf-8"
+					},
+					{
+						"key": "__RequestVerificationToken",
+						"value": "JU7LiHJZqkJh5YXCUfSST6EXwXkVgJEm-m_ooijZ5OlyNxVokB2Gq4xuS_ybKmz032kPpFRvMOjgsECKRGnGHNhogQ5l7RWVPRKZ8QLX8IoFeoLc5-j-F9lRdjqu4dYzqoaFgQ2"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"newFormname\":\"API\",\"formSourceItem\":\"\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://qa-pulse.gartner.com/SurveyEditor/Form/ValidateFormname",
+					"protocol": "https",
+					"host": [
+						"qa-pulse",
+						"gartner",
+						"com"
+					],
+					"path": [
+						"SurveyEditor",
+						"Form",
+						"ValidateFormname"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "basic",
+		"basic": [
+			{
+				"key": "password",
+				"value": "Password@09",
+				"type": "string"
+			},
+			{
+				"key": "username",
+				"value": "t1_user@cebglobal.com",
+				"type": "string"
+			}
+		]
+	},
+	"protocolProfileBehavior": {}
+}
